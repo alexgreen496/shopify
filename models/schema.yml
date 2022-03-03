@@ -15,7 +15,14 @@ sources:
             tests:
               - unique
               - not_null
-
+      - name: apps
+        description: apps data
+        columns:
+          - name: app_id
+            description: "The primary key for this table"
+            tests:
+              - unique
+              - not_null
 
 models:
   - name: fct_reviews
