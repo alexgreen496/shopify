@@ -15,7 +15,7 @@ with reviews as (
 
     from {{ ref('stg_reviews') }}
 
-    
+
 )
 
 select *
