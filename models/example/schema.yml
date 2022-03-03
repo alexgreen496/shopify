@@ -1,0 +1,28 @@
+
+version: 2
+
+sources:
+  - name: shopify
+    description: reviews raw table
+    database: shopify
+    schema: dbt_agreen
+    tables:
+      - name: reviews
+        description: reviews data
+        columns:
+          - name: app_id
+            description: "The primary key for this table"
+            tests:
+              - unique
+              - not_null
+
+
+models:
+  - name: fct_reviews
+    description: "review data"
+    columns:
+      - name: app_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
