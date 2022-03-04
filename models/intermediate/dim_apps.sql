@@ -1,6 +1,3 @@
-
-{{ config(materialized='view') }}
-
 with apps as (
 
     select *

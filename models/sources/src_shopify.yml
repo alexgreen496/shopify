@@ -15,10 +15,56 @@ sources:
             tests:
               - unique
               - not_null
+
       - name: apps
         description: apps data
         columns:
           - name: app_id
+            description: "The primary key for this table"
+            tests:
+              - unique
+              - not_null
+
+      - name: apps_categories
+        description: apps categories data
+        columns:
+          - name: app_id
+            description: "The primary key for this table"
+            tests:
+              - unique
+              - not_null
+              
+      - name: categories
+        description: categories data
+        columns:
+          - name: id
+            description: categories id
+            tests:
+              - unique
+              - not_null
+      
+      - name: key_benefits
+        description: key benefits data
+        columns:
+          - name: app_id
+            description: "The primary key for this table"
+            tests:
+              - unique
+              - not_null
+      
+      - name: pricing_plans
+        description: pricing plan data
+        columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+              - unique
+              - not_null
+      
+      - name: pricing_plan_features
+        description: app_id
+        columns:
+          - name: id
             description: "The primary key for this table"
             tests:
               - unique
