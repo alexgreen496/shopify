@@ -7,7 +7,7 @@ with apps as (
         developer,
         developer_link, 
         icon, 
-        rating, 
+        rating as average_rating, 
         reviews_count, 
         description_raw, 
         description as app_description,
