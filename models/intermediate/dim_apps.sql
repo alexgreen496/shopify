@@ -30,9 +30,7 @@ pricing_plans as (
 ),
 
 final as (
-
     select
-
     apps.app_id,
     apps.app_url, 
     apps.app_title, 
@@ -51,15 +49,14 @@ final as (
     pricing_plan_features.pricing_plan_id, 
     pricing_plan_features.pricing_plan_feature,
     pricing_plans.pricing_plan_title
-    
-    from apps
 
+    from apps
+    
     left join apps_categories using (app_id)
     left join categories using (category_id)
     left join key_benefits using (app_id)
     left join pricing_plan_features using (app_id)
     left join pricing_plans using (pricing_plan_id)
-
 )
 
 select *
