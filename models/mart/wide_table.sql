@@ -20,7 +20,7 @@ final as (
 
     from apps
 
-    join reviews using (app_id)
+    inner join reviews using (app_id)
 )
 
 select *
