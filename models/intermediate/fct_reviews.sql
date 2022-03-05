@@ -1,7 +1,9 @@
 with reviews as (
+
     select *
+
     from {{ ref('stg_reviews') }}
+    
 )
 
-select *
-from reviews
+select * from reviews

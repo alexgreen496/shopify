@@ -1,4 +1,5 @@
 with apps as (
+    
     select
         app_id, 
         url as app_url,
@@ -12,7 +13,9 @@ with apps as (
         description as app_description,
         tagline, 
         pricing_hint
+   
     from {{ source('shopify', 'apps') }}
+    
 )
 
 select * from apps

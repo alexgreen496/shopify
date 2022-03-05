@@ -1,35 +1,54 @@
 with apps as (
+
     select *
+
     from {{ ref('stg_apps') }}
+
 ),
 
 apps_categories as (
+
     select *
+
     from {{ ref('stg_apps_categories') }}
+
 ),
 
 categories as (
+
     select *
+
     from {{ ref('stg_categories') }}
+
 ),
 
 key_benefits as (
+
     select *
+
     from {{ ref('stg_key_benefits') }}
+
 ),
 
 pricing_plan_features as (
+
     select *
+
     from {{ ref('stg_pricing_plan_features') }}
+
 ),
 
 
 pricing_plans as (
+
     select *
+
     from {{ ref('stg_pricing_plans') }}
+
 ),
 
 final as (
+
     select
     apps.app_id,
     apps.app_url, 
@@ -51,13 +70,12 @@ final as (
     pricing_plans.pricing_plan_title
 
     from apps
-    
     left join apps_categories using (app_id)
     left join categories using (category_id)
     left join key_benefits using (app_id)
     left join pricing_plan_features using (app_id)
     left join pricing_plans using (pricing_plan_id)
+
 )
 
-select *
-from final
+select * from final
