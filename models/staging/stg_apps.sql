@@ -9,7 +9,7 @@ with apps as (
         icon, 
         rating as average_rating, 
         reviews_count, 
-        description_raw, 
+        description_raw as app_description_raw,
         description as app_description,
         tagline, 
         pricing_hint

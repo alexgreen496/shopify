@@ -14,7 +14,7 @@ reviews as (
 
 ),
 
-wide_table as (
+final as (
 
     select * 
 
@@ -24,4 +24,4 @@ wide_table as (
 )
 
 select *
-from wide_table
+from final
