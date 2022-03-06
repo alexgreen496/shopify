@@ -15,6 +15,15 @@ reviews as (
 
 ),
 
+authors as (
+
+    select *
+
+    from {{ ref('dim_authors') }}
+
+),
+
+
 dates as (
 
     select *
@@ -29,6 +38,7 @@ final as (
 
     from apps
     inner join reviews using (app_id)
+    left join authors using (author)
     left join dates on reviews. posted_at = dates.date_day
 
 )
