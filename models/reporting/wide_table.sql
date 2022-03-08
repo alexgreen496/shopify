@@ -23,7 +23,6 @@ authors as (
 
 ),
 
-
 dates as (
 
     select *
@@ -34,12 +33,18 @@ dates as (
 
 final as (
 
-    select * 
+    select
+        day_of_week as posted_at_day_of_week,
+        day_of_week_name as posted_at_day_of_week_name,
+        day_of_month as posted_at_day_of_month,
+        month_of_year as posted_at_month_of_year,
+        month_name as posted_at_month_name,
+        year_number as posted_at_year_number
 
     from apps
     inner join reviews using (app_id)
-    left join authors using (author)
-    left join dates on reviews. posted_at = dates.date_day
+    left join authors on reviews.author = authors.author_key
+    left join dates on reviews.posted_at = dates.date_key
 
 )
 

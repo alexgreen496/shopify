@@ -7,7 +7,7 @@ with date_spine as (
 dates as (
         
         select 
-        date_day,
+        date_day as date_key,
         day_of_week,
         day_of_week_name,
         day_of_month,

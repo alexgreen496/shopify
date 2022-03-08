@@ -1,7 +1,7 @@
 with authors as (
 
         select 
-        author,
+        author as author_key,
         min(review_rating) as min_review,
         max(review_rating) as max_review,
         avg(review_rating) as avg_review,

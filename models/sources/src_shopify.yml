@@ -7,65 +7,176 @@ sources:
     database: shopify
     schema: dbt_agreen
     tables:
+
       - name: reviews
         description: reviews data
         columns:
           - name: app_id
-            description: "The primary key for this table"
+            description: The foreign key to apps.app_id.
             tests:
-              - unique
               - not_null
+##              - relationships:
+##                to: ref('apps')
+##                field: app_id
+          - name: author
+            description: author of review.
+            tests:
+              - not_null
+          - name: rating
+            description: rating of review.
+            tests:
+              - not_null
+              - accepted_values:
+                  values: 
+                    - 1
+                    - 2
+                    - 3
+                    - 4
+                    - 5
+          - name: posted_at
+            description: date review was posted.
+            tests:
+              - not_null
+          - name: body
+            description: body of review
+          - name: helpful_count
+            description: count of helpful votes.
+          - name: developer_reply
+            description: body of developer reply to review.
+          - name: developer_reply_posted_at
+            description: date that the developer reply as posted.  
 
       - name: apps
         description: apps data
         columns:
           - name: app_id
-            description: "The primary key for this table"
+            description: The primary key for this table.
             tests:
               - unique
               - not_null
-
+##              - relationships:
+##                  to: ref('reviews')
+##                  field: app_id
+          - name: url
+            description: url link to app page.
+            tests:
+              - unique
+              - not_null
+          - name: title
+            description: app title.
+            tests:
+              - not_null
+          - name: developer
+            description: developer of app.
+              - not_null
+          - name: developer_link
+            description: link to developer of app.
+              - not_null
+              - unique
+          - name: icon
+            description: link to icon of app.
+              - not_null
+              - unique
+          - name: rating
+            description: average rating of app.
+              - not_null
+          - name: reviews_count
+            description: count of reviews for an app.
+          - name: description_raw
+            description: raw description of app.
+          - name: app_description
+            description: description of app.
+          - name: tagline
+            description: tagline of app.
+          - name: pricing_hint
+            description: pricing_hint for app.
+          
       - name: apps_categories
-        description: apps categories data
+        description: apps categories data.
         columns:
           - name: app_id
-            description: "The primary key for this table"
+            description: The foreign key to apps.app_id.
             tests:
               - unique
               - not_null
-              
+          - name: category_id
+            description: The foreign key to category.id.
+            tests:
+              - not_null
+             
       - name: categories
         description: categories data
         columns:
           - name: id
-            description: categories id
+            description: The primary key to this table.
             tests:
               - unique
               - not_null
+          - name: title
+            description: Title of the category.
+            tests:
+              - not_null
+              - accepted_values:
+                  values: 
+                    - Inventory management
+                    - Orders and shipping
+                    - Marketing
+                    - Places to sell 
+                    - Finances
+                    - Productivity
+                    - Store design
+                    - Trust and security
+                    - Reporting
+                    - Sales and conversion optimization
+                    - Finding and adding products
+                    - Customer support
       
       - name: key_benefits
         description: key benefits data
         columns:
           - name: app_id
-            description: "The primary key for this table"
+            description: The foreign key to apps.app_id.
             tests:
               - unique
               - not_null
+          - name: title
+            description: Title of the key benefit of the app.
+          - name: description
+            description: Description of the key benefit of the app.
       
       - name: pricing_plans
         description: pricing plan data
         columns:
           - name: id
-            description: "The primary key for this table"
+            description: The primary key for this table.
             tests:
               - unique
               - not_null
-      
+          - name: app_id
+            description: The foreign key to apps.app_id.
+            tests:
+              - not_null
+          - name: title
+            description: Title of the pricing plan.
+            tests:
+              - not_null
+          - name: price
+            description: Price of the pricing plan.
+            tests:
+              - not_null
+          
       - name: pricing_plan_features
-        description: app_id
+        description: features of pricing plans
         columns:
-          - name: id
-            description: "The primary key for this table"
+          - name: app_id
+            description: The foreign key to apps.app_id.
             tests:
               - unique
               - not_null
+          - name: pricing_plan_id
+            description: The foreign key to pricing_plans.id.
+            tests:
+              - unique
+              - not_null
+          - name: feature
+            description: Feature of the pricing plan.

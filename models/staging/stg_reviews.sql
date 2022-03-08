@@ -6,7 +6,7 @@ with reviews as (
         rating as review_rating,
         posted_at, 
         body, 
-        helpful_count, 
+        helpful_count,
         developer_reply, 
         developer_reply_posted_at
 
