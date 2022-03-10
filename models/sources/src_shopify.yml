@@ -1,13 +1,11 @@
-
 version: 2
 
 sources:
   - name: shopify
     description: reviews raw table
     database: shopify
-    schema: dbt_agreen
+    schema: shopify
     tables:
-
       - name: reviews
         description: reviews data
         columns:
@@ -15,9 +13,6 @@ sources:
             description: The foreign key to apps.app_id.
             tests:
               - not_null
-##              - relationships:
-##                to: ref('apps')
-##                field: app_id
           - name: author
             description: author of review.
             tests:
@@ -45,7 +40,6 @@ sources:
             description: body of developer reply to review.
           - name: developer_reply_posted_at
             description: date that the developer reply as posted.  
-
       - name: apps
         description: apps data
         columns:
@@ -54,9 +48,6 @@ sources:
             tests:
               - unique
               - not_null
-##              - relationships:
-##                  to: ref('reviews')
-##                  field: app_id
           - name: url
             description: url link to app page.
             tests:
@@ -82,15 +73,12 @@ sources:
               - not_null
           - name: reviews_count
             description: count of reviews for an app.
-          - name: description_raw
-            description: raw description of app.
           - name: app_description
             description: description of app.
           - name: tagline
             description: tagline of app.
           - name: pricing_hint
-            description: pricing_hint for app.
-          
+            description: pricing_hint for app.    
       - name: apps_categories
         description: apps categories data.
         columns:
@@ -102,8 +90,7 @@ sources:
           - name: category_id
             description: The foreign key to category.id.
             tests:
-              - not_null
-             
+              - not_null       
       - name: categories
         description: categories data
         columns:
@@ -121,7 +108,7 @@ sources:
                     - Inventory management
                     - Orders and shipping
                     - Marketing
-                    - Places to sell 
+                    - Places to sell
                     - Finances
                     - Productivity
                     - Store design
@@ -129,8 +116,7 @@ sources:
                     - Reporting
                     - Sales and conversion optimization
                     - Finding and adding products
-                    - Customer support
-      
+                    - Customer support   
       - name: key_benefits
         description: key benefits data
         columns:
@@ -143,7 +129,6 @@ sources:
             description: Title of the key benefit of the app.
           - name: description
             description: Description of the key benefit of the app.
-      
       - name: pricing_plans
         description: pricing plan data
         columns:
@@ -164,7 +149,6 @@ sources:
             description: Price of the pricing plan.
             tests:
               - not_null
-          
       - name: pricing_plan_features
         description: features of pricing plans
         columns:

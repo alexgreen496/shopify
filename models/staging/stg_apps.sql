@@ -8,8 +8,7 @@ with apps as (
         developer_link, 
         icon, 
         rating as average_rating, 
-        reviews_count, 
-        description_raw as app_description_raw,
+        reviews_count,
         description as app_description,
         tagline, 
         pricing_hint

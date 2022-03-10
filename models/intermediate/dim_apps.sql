@@ -58,7 +58,6 @@ final as (
     apps.icon, 
     apps.average_rating, 
     apps.reviews_count, 
-    apps.app_description_raw, 
     apps.app_description, 
     apps.tagline, 
     apps.pricing_hint,

@@ -24,8 +24,15 @@ authors as (
 ),
 
 dates as (
-
-    select *
+    
+    select
+    date_key,
+    day_of_week as posted_at_day_of_week,
+    day_of_week_name as posted_at_day_of_week_name,
+    day_of_month as posted_at_day_of_month,
+    month_of_year as posted_at_month_of_year,
+    month_name as posted_at_month_name,
+    year_number as posted_at_year_number
 
     from {{ ref('dim_dates') }}
 
@@ -33,13 +40,7 @@ dates as (
 
 final as (
 
-    select
-        day_of_week as posted_at_day_of_week,
-        day_of_week_name as posted_at_day_of_week_name,
-        day_of_month as posted_at_day_of_month,
-        month_of_year as posted_at_month_of_year,
-        month_name as posted_at_month_name,
-        year_number as posted_at_year_number
+    select *
 
     from apps
     inner join reviews using (app_id)
