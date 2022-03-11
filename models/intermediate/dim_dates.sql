@@ -11,9 +11,10 @@ dates as (
         day_of_week,
         day_of_week_name,
         day_of_month,
-        month_of_year,
+        date_part('month', date_day) as month_number,
         month_name,
-        year_number
+        year_number,
+        concat(month_name,' ',date_part('year', date_day)) as month_year
 
         from date_spine
 

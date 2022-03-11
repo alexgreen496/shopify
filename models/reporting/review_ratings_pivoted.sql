@@ -22,7 +22,7 @@ joined as (
    category_title,
    reviews.review_rating
    from apps
-   right join reviews using (app_id)
+   inner join reviews using (app_id)
 ),
 
 final as (
