@@ -1,14 +1,6 @@
 {%- set review_ratings = ['1', '2', '3', '4', '5'] -%}
 
-with apps as (
-
-    select *
-
-    from {{ ref('dim_apps') }}
-
-),
-
-reviews as (
+with reviews as (
 
     select *
 
@@ -16,13 +8,21 @@ reviews as (
 
 ),
 
+apps as (
+
+    select *
+
+    from {{ ref('dim_apps') }}
+
+),
+
 joined as (
    select
    app_id,
-   category_title,
-   reviews.review_rating
-   from apps
-   inner join reviews using (app_id)
+   review_rating,
+   apps.category_title
+   from reviews
+   left join apps using (app_id)
 ),
 
 final as (

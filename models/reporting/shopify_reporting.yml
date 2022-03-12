@@ -1,0 +1,244 @@
+version: 2
+
+models:
+  - name: wide_table
+    description: Wide table by joining fct_reviews, dim_apps, dim_authors and dim_dates.
+
+    columns:
+      - name: app_id
+        description: The foreign key to apps.app_id.
+        tests:
+          - not_null
+
+      - name: author
+        description: The author of the review.
+
+      - name: review_rating
+        description: The rating given in the review.
+        tests:
+          - not_null
+          - accepted_values:
+              values: 
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+
+      - name: posted_at
+        description: The date the review was posted.
+        tests:
+          - not_null
+
+      - name: body
+        description: The body of text of the review.
+
+      - name: helpful_count
+        description: The count of helpful votes for a review.
+
+      - name: developer_reply
+        description: The body of text of the developer reply to the review.
+
+      - name: developer_reply_posted_at
+        description: The date that the developer reply was posted.
+
+      - name: app_url
+        description: The url link to the app's web page.
+        tests:
+          - unique
+          - not_null
+
+      - name: app_title
+        description: The app title.
+        tests:
+          - not_null
+
+      - name: developer
+        description: The name of the developer of the app.
+          - not_null
+
+      - name: developer_link
+        description: The link to the web page of the developer of the app.
+          - not_null
+          - unique
+
+      - name: icon
+        description: The link to the web page of the icon of the app.
+          - not_null
+          - unique
+
+      - name: average_rating
+        description: The average rating of all reviews of the app.
+          - not_null
+
+      - name: reviews_count
+        description: A count of the total number of reviews of the app.
+
+      - name: app_description
+        description: The description of the app.
+
+      - name: tagline
+        description: The tagline of the app.
+
+      - name: pricing_hint
+        description: The pricing hint of the app.
+
+      - name: category_id
+        description: The primary key to this table.
+        tests:
+          - unique
+          - not_null
+
+      - name: category_title
+        description: Title of the app category.
+        tests:
+          - not_null
+          - accepted_values:
+              values: 
+                - Inventory management
+                - Orders and shipping
+                - Marketing
+                - Places to sell
+                - Finances
+                - Productivity
+                - Store design
+                - Trust and security
+                - Reporting
+                - Sales and conversion optimization
+                - Finding and adding products
+                - Customer support
+
+      - name: key_benefit_title
+        description: Title of the key benefit of the app.
+
+      - name: key_benefit_description
+        description: Description of the key benefit of the app.
+
+      - name: pricing_plan_id
+        description: The primary key for pricing_plans used to join on pricing_plan_features.pricing_plan_id.
+        tests:
+          - unique
+
+      - name: pricing_plan_title
+        description: Title of the app's pricing plan.
+
+      - name: price
+        description: Price of the pricing plan.
+
+      - name: pricing_plan_feature 
+        description: The feature of the pricing plan of the app.
+
+      - name: author_key
+        description: The key to fct_reviews.authors.
+        tests:
+          - not_null
+
+      - name: min_review
+        description: The minimum rating the author has given in a review.
+        tests:
+          - not_null
+          - accepted_values:
+              values: 
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+
+      - name: max_review
+        description: The maximum rating the author has given in a review.
+        tests:
+          - not_null
+          - accepted_values:
+              values: 
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+
+      - name: avg_review
+        description: The average rating of all the reviews an author has given.
+        tests:
+          - not_null
+
+      - name: total_apps_reviewed
+        description: A count of the total number of apps the author has reviwed.
+        tests:
+          - not_null
+
+    columns:
+      - name: posted_at_date_key
+        description: The key to used to join the date dimension columns on fct_reviews.posted_at.
+
+      - name: posted_at_day_of_week
+        description: The number of the day of the week when the review was posted.
+
+      - name: posted_at_day_of_week_name
+        description: The name of the day of the week when the review was posted.
+
+      - name: posted_at_day_of_month
+        description: The number of the day of the month when the review was posted.
+
+      - name: posted_at_month_number
+        description: The number of the month of the year when the review was posted.
+
+      - name: posted_at_month_name
+        description: The name of the month of the year when the review was posted.
+          
+      - name: posted_at_year_number
+        description: The year when the review was posted.
+          
+      - name: posted_at_month_year
+        description: The month number and year when the review was posted.
+
+  - name: review_ratings_pivoted
+    description: A table reporting the count of each review rating for each app category.
+    
+    columns:
+      - name: category_title
+        description: The app category.
+          - not_null
+          - unique
+      
+      - name: count_of_rating_1
+        description: The count of 1 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_2
+        description: The count of 2 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_3
+        description: The count of 3 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_4
+        description: The count of 4 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_5
+        description: The count of 5 star review ratings for apps in the category.
+          - not_null
+
+  - name: review_ratings_windowed
+    description: A table reporting the monthly moving average app review rating over time. 
+    
+    columns:
+      - name: posted_at_month_number
+        description: The number of the month of the year when the review was posted.
+
+      - name: posted_at_month_name
+        description: The name of the month of the year when the review was posted.
+          
+      - name: posted_at_year_number
+        description: The year when the review was posted.
+          
+      - name: posted_at_month_year
+        description: The month number and year when the review was posted.
+
+      - name: moving_average_month
+        description: The monthly moving average app review rating for the month.
+        tests:
+          - not_null
+    
