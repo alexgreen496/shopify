@@ -64,9 +64,11 @@ final as (
     apps_categories.category_id,
     categories.category_title,
     key_benefits.key_benefit_title,
+    key_benefits.key_benefit_description,
     pricing_plan_features.pricing_plan_id, 
     pricing_plan_features.pricing_plan_feature,
-    pricing_plans.pricing_plan_title
+    pricing_plans.pricing_plan_title,
+    pricing_plans.price
 
     from apps
     left join apps_categories using (app_id)

@@ -1,11 +1,9 @@
-Shopify App Store Reviews Project
+Shopify App Store Reviews Project:
 
-Warehoused in Postgres:
-
-Modelled in dbt:
+Warehoused in Postgres
 
 
-Style guide:
+Modelled in dbt
 
 
-Visualised with Tableau:
+Visualised with Tableau

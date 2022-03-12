@@ -31,7 +31,7 @@ final as (
     category_title,
     {% for review_rating in review_ratings -%}
     count(case when review_rating = {{ review_rating }} then review_rating else null end) 
-    as rating_of_{{ review_rating }}
+    as count_of_rating_{{ review_rating }}
     {%- if not loop.last -%}
     ,
     {% endif %}

@@ -1,0 +1,165 @@
+version: 2
+
+sources:
+  - name: shopify
+    description: Shopify app store review data.
+    database: shopify
+    schema: shopify
+    tables:
+
+      - name: reviews
+        description: Raw review data.
+        columns:
+          - name: app_id
+            description: The foreign key to apps.app_id.
+            tests:
+              - not_null
+          - name: author
+            description: The author of the review.
+          - name: rating
+            description: The rating given in the review.
+            tests:
+              - not_null
+              - accepted_values:
+                  values: 
+                    - 1
+                    - 2
+                    - 3
+                    - 4
+                    - 5
+          - name: posted_at
+            description: The date the review was posted.
+            tests:
+              - not_null
+          - name: body
+            description: The body of text of the review.
+          - name: helpful_count
+            description: The count of helpful votes for a review.
+          - name: developer_reply
+            description: The body of text of the developer reply to the review.
+          - name: developer_reply_posted_at
+            description: The date that the developer reply was posted.
+
+      - name: apps
+        description: Raw apps data.
+        columns:
+          - name: app_id
+            description: The primary key for this table.
+            tests:
+              - unique
+              - not_null
+          - name: url
+            description: The url link to the app's web page.
+            tests:
+              - unique
+              - not_null
+          - name: title
+            description: The app title.
+            tests:
+              - not_null
+          - name: developer
+            description: The name of the developer of the app.
+              - not_null
+          - name: developer_link
+            description: The link to the web page of the developer of the app.
+              - not_null
+              - unique
+          - name: icon
+            description: The link to the web page of the icon of the app.
+              - not_null
+              - unique
+          - name: rating
+            description: The average rating of all reviews of the app.
+              - not_null
+          - name: reviews_count
+            description: A count of the total number of reviews of the app.
+          - name: description
+            description: The description of the app.
+          - name: tagline
+            description: The tagline of the app.
+          - name: pricing_hint
+            description: The pricing hint of the app.
+
+      - name: apps_categories
+        description: Raw app categories link data.
+        columns:
+          - name: app_id
+            description: The foreign key to apps.app_id.
+            tests:
+              - not_null
+          - name: category_id
+            description: The foreign key to category.id.
+            tests:
+              - not_null    
+                 
+      - name: categories
+        description: Raw app categories data.
+        columns:
+          - name: id
+            description: The primary key to this table.
+            tests:
+              - unique
+              - not_null
+          - name: title
+            description: Title of the app category.
+            tests:
+              - not_null
+              - accepted_values:
+                  values: 
+                    - Inventory management
+                    - Orders and shipping
+                    - Marketing
+                    - Places to sell
+                    - Finances
+                    - Productivity
+                    - Store design
+                    - Trust and security
+                    - Reporting
+                    - Sales and conversion optimization
+                    - Finding and adding products
+                    - Customer support
+
+      - name: key_benefits
+        description: Raw key benefits of apps data.
+        columns:
+          - name: app_id
+            description: The foreign key to apps.app_id.
+            tests:
+              - not_null
+          - name: title
+            description: Title of the key benefit of the app.
+          - name: description
+            description: Description of the key benefit of the app.
+
+      - name: pricing_plans
+        description: Raw pricing plan of apps data.
+        columns:
+          - name: id
+            description: The primary key to this table.
+            tests:
+              - unique
+              - not_null
+          - name: app_id
+            description: The foreign key to apps.app_id.
+            tests:
+              - not_null
+          - name: title
+            description: Title of the app's pricing plan.
+          - name: price
+            description: Price of the pricing plan.
+            tests:
+              - not_null
+
+      - name: pricing_plan_features
+        description: Raw features of pricing plans data.
+        columns:
+          - name: app_id
+            description: The foreign key to apps.app_id.
+            tests:
+              - not_null
+          - name: pricing_plan_id
+            description: The foreign key to pricing_plans.id.
+            tests:
+              - not_null
+          - name: feature
+            description: The feature of the pricing plan of the app.

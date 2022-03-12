@@ -11,6 +11,8 @@ with reviews as (
         developer_reply_posted_at
 
     from {{ source('shopify', 'reviews') }}
+
+    where author is not null
     
 )
 
