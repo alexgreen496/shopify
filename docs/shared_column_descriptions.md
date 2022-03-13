@@ -16,7 +16,6 @@ The rating given in the review.
 
 {% enddocs %}
 
-
 {% docs posted_at %}
 
 The date the review was posted.                                    
