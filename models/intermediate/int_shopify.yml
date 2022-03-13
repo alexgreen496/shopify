@@ -6,7 +6,7 @@ models:
 
     columns:
       - name: app_id
-        description: The foreign key to apps.app_id.
+        description: '{{ doc("app_id_foreign") }}'
         tests:
           - not_null
           - relationships:
@@ -14,10 +14,10 @@ models:
               field: app_id
 
       - name: author
-        description: The author of the review.
+        description: '{{ doc("author") }}'
 
       - name: review_rating
-        description: The rating given in the review.
+        description: '{{ doc("review_rating") }}'
         tests:
           - not_null
           - accepted_values:
@@ -29,78 +29,82 @@ models:
                 - 5
 
       - name: posted_at
-        description: The date the review was posted.
+        description: '{{ doc("posted_at") }}'
         tests:
           - not_null
 
       - name: body
-        description: The body of text of the review.
+        description: '{{ doc("body") }}'
 
       - name: helpful_count
-        description: The count of helpful votes for a review.
+        description: '{{ doc("helpful_count") }}'
 
       - name: developer_reply
-        description: The body of text of the developer reply to the review.
+        description: '{{ doc("developer_reply") }}'
 
       - name: developer_reply_posted_at
-        description: The date that the developer reply was posted.
+        description: '{{ doc("developer_reply_posted_at") }}'
 
   - name: dim_apps
     description: App dimension data.
 
     columns:
       - name: app_id
-        description: The primary key for this table.
+        description: '{{ doc("app_id_primary") }}'
         tests:
           - not_null
 
       - name: app_url
-        description: The url link to the app's web page.
+        description: '{{ doc("app_url") }}'
         tests:
           - not_null
 
       - name: app_title
-        description: The app title.
+        description: '{{ doc("app_title") }}'
         tests:
           - not_null
 
       - name: developer
-        description: The name of the developer of the app.
+        description: '{{ doc("developer") }}'
+        tests:
           - not_null
 
       - name: developer_link
-        description: The link to the web page of the developer of the app.
+        description: '{{ doc("developer_link") }}'
+        tests:
           - not_null
           - unique
 
       - name: icon
-        description: The link to the web page of the icon of the app.
+        description: '{{ doc("icon") }}'
+        tests:
           - not_null
           - unique
 
       - name: average_rating
-        description: The average rating of all reviews of the app.
+        description: '{{ doc("average_rating") }}'
+        tests:
           - not_null
 
       - name: reviews_count
-        description: A count of the total number of reviews of the app.
+        description: '{{ doc("reviews_count") }}'
 
       - name: app_description
-        description: The description of the app.
+        description: '{{ doc("app_description") }}'
 
       - name: tagline
-        description: The tagline of the app.
+        description: '{{ doc("tagline") }}'
 
       - name: pricing_hint
-        description: The pricing hint of the app.
+        description: '{{ doc("pricing_hint") }}'
 
       - name: category_id
-        description: The primary key to this table.
+        description: '{{ doc("category_id_primary") }}'
         tests:
           - not_null
 
       - name: category_title
-        description: Title of the app category.
+        description: '{{ doc("category_title") }}'
         tests:
           - not_null
           - accepted_values:
@@ -119,36 +123,36 @@ models:
                 - Customer support
 
       - name: key_benefit_title
-        description: Title of the key benefit of the app.
+        description: '{{ doc("key_benefit_title") }}'
 
       - name: key_benefit_description
-        description: Description of the key benefit of the app.
+        description: '{{ doc("key_benefit_description") }}'
 
       - name: pricing_plan_id
-        description: The primary key for pricing_plans used to join on pricing_plan_features.pricing_plan_id.
+        description: '{{ doc("pricing_plan_id_primary") }}'
         tests:
           - unique
 
       - name: pricing_plan_title
-        description: Title of the app's pricing plan.
+        description: '{{ doc("pricing_plan_title") }}'
 
       - name: price
-        description: Price of the pricing plan.
+        description: '{{ doc("price") }}'
 
       - name: pricing_plan_feature 
-        description: The feature of the pricing plan of the app.
+        description: '{{ doc("pricing_plan_feature") }}'
 
   - name: dim_authors
     description: Authors dimension data.
 
     columns:
       - name: author_key
-        description: The key to fct_reviews.authors.
+        description: '{{ doc("author_key") }}'
         tests:
           - not_null
 
       - name: min_review
-        description: The minimum rating the author has given in a review.
+        description: '{{ doc("min_review") }}'
         tests:
           - not_null
           - accepted_values:
@@ -160,7 +164,7 @@ models:
                 - 5
 
       - name: max_review
-        description: The maximum rating the author has given in a review.
+        description: '{{ doc("max_review") }}'
         tests:
           - not_null
           - accepted_values:
@@ -172,12 +176,12 @@ models:
                 - 5
 
       - name: avg_review
-        description: The average rating of all the reviews an author has given.
+        description: '{{ doc("avg_review") }}'
         tests:
           - not_null
 
       - name: total_apps_reviewed
-        description: A count of the total number of apps the author has reviwed.
+        description: '{{ doc("total_apps_reviewed") }}'
         tests:
           - not_null
 
