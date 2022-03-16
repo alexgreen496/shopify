@@ -8,3 +8,4 @@ with apps_categories as (
 )
 
 select * from apps_categories
+

@@ -104,23 +104,6 @@ models:
           - not_null
 
       - name: category_title
-        description: '{{ doc("category_title") }}'
-        tests:
-          - not_null
-          - accepted_values:
-              values: 
-                - Inventory management
-                - Orders and shipping
-                - Marketing
-                - Places to sell
-                - Finances
-                - Productivity
-                - Store design
-                - Trust and security
-                - Reporting
-                - Sales and conversion optimization
-                - Finding and adding products
-                - Customer support
 
       - name: key_benefit_title
         description: '{{ doc("key_benefit_title") }}'
@@ -229,5 +212,35 @@ models:
         description: The month number and year associated with the date_key.
         tests:
           - not_null
+
+  - name: int_review_ratings_pivoted
+    description: A table reporting the count of each review rating for each app category.
+    
+    columns:
+      - name: category_title
+        description: The app category.
+          - not_null
+          - unique
+      
+      - name: count_of_rating_1
+        description: The count of 1 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_2
+        description: The count of 2 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_3
+        description: The count of 3 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_4
+        description: The count of 4 star review ratings for apps in the category.
+          - not_null
+      
+      - name: count_of_rating_5
+        description: The count of 5 star review ratings for apps in the category.
+          - not_null
+  
       
     

@@ -1,5 +1,7 @@
 with date_spine as (
 
+    -- generate date spine from dates 2009-01-01 to 2020-01-01.
+
     {{ dbt_date.get_date_dimension('2009-01-01', '2020-01-01') }}
 
 ),

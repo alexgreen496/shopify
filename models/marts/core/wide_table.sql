@@ -1,5 +1,3 @@
-{{ config ( materialized="table" )}}
-
 with reviews as (
 
     select *
@@ -9,6 +7,8 @@ with reviews as (
 ),
 
 apps as (
+
+    -- select * except for category_id and pricing_plan_id (not needed).
 
     select
     {{ dbt_utils.star(from=ref('dim_apps'), except=["category_id", "pricing_plan_id"]) }}
@@ -27,6 +27,8 @@ authors as (
 
 dates as (
     
+    -- select * with prefix "posted_at_" as we will be joing these columns on fct_reviews.posted_at.
+
     select
     {{ star_with_prefix(from=ref("dim_dates"), prefix="posted_at_", except=[]) }}
 

@@ -196,37 +196,8 @@ models:
       - name: posted_at_month_year
         description: The month number and year when the review was posted.
 
-  - name: review_ratings_pivoted
-    description: A table reporting the count of each review rating for each app category.
-    
-    columns:
-      - name: category_title
-        description: The app category.
-          - not_null
-          - unique
-      
-      - name: count_of_rating_1
-        description: The count of 1 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_2
-        description: The count of 2 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_3
-        description: The count of 3 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_4
-        description: The count of 4 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_5
-        description: The count of 5 star review ratings for apps in the category.
-          - not_null
-
-  - name: review_ratings_windowed
-    description: A table reporting the monthly moving average app review rating over time. 
+  - name: quarterly_rolling_average_review_rating
+    description: A table reporting the quarterly rolling average app review rating over time. 
     
     columns:
       - name: posted_at_month_number
@@ -241,8 +212,19 @@ models:
       - name: posted_at_month_year
         description: The month number and year when the review was posted.
 
-      - name: moving_average_month
-        description: The monthly moving average app review rating for the month.
+      - name: quarterly_month_rolling_average_rating
+        description: The quarterly rolling average app review rating for the month.
         tests:
           - not_null
-    
+
+metrics:
+  - name: app_reviews_dashboard
+    label: App Reviews
+    model: ref('wide_table')
+    description: A dashboard reporting app review KPIs.
+
+    type: count
+    sql: app_id
+
+    timestamp: posted_at
+    time_grains: [day, week, month]

@@ -3,7 +3,7 @@ with reviews as (
     select
         app_id, 
         author, 
-        rating as review_rating,
+        {{ round_to_2_decimal_places('rating') }} as review_rating,
         posted_at, 
         body, 
         helpful_count,
@@ -11,8 +11,6 @@ with reviews as (
         developer_reply_posted_at
 
     from {{ source('shopify', 'reviews') }}
-
-    where author is not null
     
 )
 
