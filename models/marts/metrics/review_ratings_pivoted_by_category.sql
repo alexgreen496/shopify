@@ -28,10 +28,12 @@ apps as (
 ),
 
 joined as (
+
     select 
     app_id,
     review_rating,
     category_title
+    
     from reviews
     left join apps using (app_id)
 
