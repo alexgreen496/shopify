@@ -229,7 +229,7 @@ models:
       - name: posted_at_month_year
         description: The month number and year when the review was posted.
 
-      - name: quarterly_month_rolling_average_rating
+      - name: three_month_rolling_average_review_count
         description: The quarterly rolling average app review rating for the month.
         tests:
           - not_null
