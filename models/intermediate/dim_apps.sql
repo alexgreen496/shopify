@@ -1,4 +1,4 @@
-{%- set category_titles = ['Inventory management', 'Orders and shipping', 'Marketing', 'Places to sell', 'Finances', 'Productivity', 'Store design', 'Trust and security', 'Reporting'
+{%- set category_titles = ['Inventory management', 'Orders and shipping', 'Marketing', 'Places to sell', 'Finances', 'Productivity', 'Store design', 'Trust and security', 'Reporting',
 'Sales and conversion optimization', 'Finding and adding products', 'Customer support' ] -%}
 
 with apps as (

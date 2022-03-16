@@ -7,7 +7,7 @@ with apps as (
         developer,
         developer_link, 
         icon, 
-        {{ round_to_2_decimal_places('rating') }} as average_rating, 
+        {{ round_to_decimal_places('rating') }} as average_rating, 
         reviews_count,
         description as app_description,
         tagline, 

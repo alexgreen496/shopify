@@ -1,3 +1,5 @@
+{{ config (materialized="table") }}
+
 with  reviews as (
 
     select *
@@ -44,7 +46,7 @@ final as (
 
     -- take the rolling average of review counts over a 3 month period rounded to 2 decimal places.
 
-    {{ round_to_2_decimal_places('avg(monthly_total_reviews) over 
+    {{ round_to_decimal_places('avg(monthly_total_reviews) over 
     (order by posted_at_year_number, posted_at_month_number 
     rows between 2 preceding and current row)') }} as three_month_rolling_average_review_count
     

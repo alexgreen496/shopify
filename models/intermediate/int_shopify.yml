@@ -103,7 +103,41 @@ models:
         tests:
           - not_null
 
-      - name: category_title
+      - name: inventory_management
+        description: Boolean indicator if an app is a member of the inventory_management category.
+      
+      - name: orders_and_shipping
+        description: Boolean indicator if an app is a member of the orders_and_shipping category.
+
+      - name: marketing
+        description: Boolean indicator if an app is a member of the marketing category.
+
+      - name: places_to_sell
+        description: Boolean indicator if an app is a member of the places_to_sell category.
+
+      - name: finances
+        description: Boolean indicator if an app is a member of the finances category.
+
+      - name: productivity
+        description: Boolean indicator if an app is a member of the productivity category.
+
+      - name: store_design
+        description: Boolean indicator if an app is a member of the store_design category.
+
+      - name: trust_and_security
+        description: Boolean indicator if an app is a member of the trust_and_security category.
+
+      - name: reporting
+        description: Boolean indicator if an app is a member of the reporting category.
+      
+      - name: sales_and_conversion_optimization
+        description: Boolean indicator if an app is a member of the sales_and_conversion_optimization category.
+      
+      - name: finding_and_adding_products
+        description: Boolean indicator if an app is a member of the finding_and_adding_products category.
+    
+      - name: customer_support
+        description: Boolean indicator if an app is a member of the reporting category.
 
       - name: key_benefit_title
         description: '{{ doc("key_benefit_title") }}'
@@ -213,34 +247,42 @@ models:
         tests:
           - not_null
 
-  - name: int_review_ratings_pivoted
-    description: A table reporting the count of each review rating for each app category.
-    
+  - name: int_categories
+    description: Ephemeral model of app category data.
+
     columns:
+      - name: app_id
+        description: '{{ doc("app_id_foreign") }}'
+        tests:
+          - not_null
+
+      - name: category_id
+        description: '{{ doc("category_id_primary") }}'
+        tests:
+          - not_null
+
+      - name: day_of_week_name
+        description: The name of the day of the week associated with the date_key.
+        tests:
+          - not_null
+          
       - name: category_title
-        description: The app category.
+        description: '{{ doc("category_title") }}'
+        tests:
           - not_null
-          - unique
-      
-      - name: count_of_rating_1
-        description: The count of 1 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_2
-        description: The count of 2 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_3
-        description: The count of 3 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_4
-        description: The count of 4 star review ratings for apps in the category.
-          - not_null
-      
-      - name: count_of_rating_5
-        description: The count of 5 star review ratings for apps in the category.
-          - not_null
-  
+          - accepted_values:
+              values: 
+                - Inventory management
+                - Orders and shipping
+                - Marketing
+                - Places to sell
+                - Finances
+                - Productivity
+                - Store design
+                - Trust and security
+                - Reporting
+                - Sales and conversion optimization
+                - Finding and adding products
+                - Customer support
       
     
