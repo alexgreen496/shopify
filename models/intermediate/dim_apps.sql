@@ -68,8 +68,8 @@ pricing_plans as (
 
 final as (
 
-    -- to use select * with exceptions here, would need to materialise cte's as database objects 
-    -- or rename app_id columns outside of apps model.
+    -- to use select * with exceptions here, would need to materialise cte's as database objects,
+    -- or rename app_id columns outside of apps cte.
 
     select
     apps.app_id,
