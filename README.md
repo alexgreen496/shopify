@@ -4,7 +4,7 @@ The Shopify apps marketplace is a source of valuable information on how online s
 
 ### Overview:
 
-- Sources layer, staging layer, intermediate layer (normalised star-schema) and marts layer (denormalised wide-table and metrics) with the necessary dependencies and materialisations.
+- Sources layer, staging layer, intermediate layer (star-schema) and marts layer (denormalised wide-table and metrics) with the necessary dependencies and materialisations.
 - Consistent naming guide (snake-case column names, date types, decimal places etc.) and a clearly defined coding style.
 - Use of open-source packages, macros and jinja templating for modularity and code efficiency while maintaining readability.
 - Detailed documentation and use of generic and singular testing.
